@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!----css3---->
+    <link rel="stylesheet" href="/dashboard/custom.css">
+
+    <!--google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!--google material icon-->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column">
+    <input type="text" id="pstatus" value="dashboard" hidden=true disabled=true>
+    <div class="wrapper flex-shrink-0">
+
+        <div class="body-overlay"></div>
+
+        <!-------sidebar--design------------>
+
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="material-icons">local_hospital</i> Med.id</h2>
+            </div>
+            <ul class="list-unstyled component me-1">
+                <li class="active">
+                    <a title="home" class="dashboard menuBtn"><i class="material-icons">dashboard</i>dashboard </a>
+                </li>
+            </ul>
+            <ul class="list-unstyled component me-1" id="sidebarMenu">
+                <!-- <li class="dropdown">
+                    <a href="#homeSubmenu1" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                        aria-controls="homeSubmenu1" id="sidebarMenuBtn" class="dropdown-toggle">
+                        <i class="material-icons">aspect_ratio</i>Layouts
+                    </a>
+                    <ul class="collapse list-unstyled menu" id="homeSubmenu1">
+                        <li><a href="#">layout 1</a></li>
+                        <li><a href="#">layout 2</a></li>
+                        <li><a href="#">layout 3</a></li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class=""><i class="material-icons">date_range</i>copy </a>
+                </li>
+                <li class="">
+                    <a href="#" class=""><i class="material-icons">library_books</i>calender </a>
+                </li> -->
+
+            </ul>
+        </div>
+        <!-------sidebar--design- close----------->
+
+        <!-------page-content start----------->
+
+        <div id="content">
+
+            <!------top-navbar-start----------->
+
+            <div class="top-navbar">
+                <div class="xd-topbar">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-2 col-md-2 col-lg-3 order-2 order-md-1 align-self-center">
+                            <div class="xp-menubar">
+                                <span class="material-icons text-white">signal_cellular_alt</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-7 col-lg-6 order-3 order-md-2">
+                            <div class="xp-searchbar">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="search" class="form-control" placeholder="Search">
+                                        <div class="input-group-append">
+                                            <button class="btn" type="submit" id="button-addon2"><i
+                                                    class="material-icons">search</i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div class="col-8 col-md-3 col-lg-3 order-1 order-md-3">
+                            <nav class="navbar p-0 justify-content-end me-2">
+                                <ul class="nav navbar-nav flex-row ml-auto">
+                                    <li class="dropdown nav-item">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownProfil" data-bs-toggle="dropdown" aria-expanded="false"
+                                            th:text="${hUserName}">
+                                            Hallo User
+                                        </button>
+
+                                        <ul class="dropdown-menu dropdown-menu-end position-absolute"
+                                            aria-labelledby="dropdownProfil">
+                                            <li><button id="idLogout">
+                                                    <i class="material-icons">logout</i>
+                                                    Logout
+                                                </button></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+
+                    <div class="xp-breadcrumbbar text-center">
+                        <h4 class="page-title">Dashboard</h4>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Med.id</a></li>
+                            <li class="breadcrumb-item active" aria-curent="page">Dashboard</li>
+                        </ol>
+                    </div>
+
+
+                </div>
+            </div>
+            <!------top-navbar-end----------->
+
+            <!------main-content-start----------->
+            <div class="col-sm-auto me-3 mx-3 p-6 my-3">
+                <div class="row row-cols-1 row-cols-md-4 g-4" id="isiContent">
+
+                </div>
+            </div>
+
+            
+            <!-- modal untuk cari dokter -->
+        <div class="modal fade" id="modalCariDokter">
+            <div class="modal-dialog">
+                <div class="modal-content" style="height: 700px; width: 600px;">
+                    <div class="modal-header">
+                        <div>
+                            <h1 class="text-primary modal-title">Cari Dokter</h1>
+                            <p>Masukkan minimal 1 kata kunci untuk pencarian dokter Anda</p>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body isiModal">
+                        <div class="container mt-3">
+
+                            <form>
+                                <div class="mb-3">
+                                    <label for="disabledSelect" class="form-label">Lokasi</label>
+                                    <select class="form-select lokasi">
+
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Nama Dokter</label>
+                                    <input type="text" class="form-control namaDokter">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledSelect" class="form-label">Spesialisasi/SubSpesialisasi</label>
+                                    <select class="form-select spesialisasi">
+
+                                    </select>
+                                    <div id="isiSps"></div>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledSelect" class="form-label">Tindakan Medis</label>
+                                    <select class="form-select tindakan">
+
+                                    </select>
+                                </div>
+                                <div class="d-flex flex-row justify-content-center mt-5">
+                                    <button type="button" class="btn btn-outline-primary aturUlang"
+                                        style="width: 115px; height: 48px;">Atur Ulang</button>
+                                    <button type="button" class="btn btn-primary ms-3 caridok"
+                                        style="width: 115px; height: 48px;">Cari</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- batas modal dinamis --untuk cari dokter -->
+
+            <!----edit-modal end--------->
+
+        </div>
+    </div>
+    <!----footer-design------------->
+    <footer class="footer mt-auto">
+        <div class="container-fluid">
+            <div class="footer-in">
+                <p class="mb-0">@Copyrigth Batch 328 A. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="/jquery-3.7.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+<script type="text/JavaScript" src="/dokter/caridokter.js"></script>
+<script type="text/JavaScript" src="/dashboard/dashboard.js"></script>
+
+</html>

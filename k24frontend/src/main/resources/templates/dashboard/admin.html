@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Admin</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!----css3---->
+    <link rel="stylesheet" href="/dashboard/custom.css" />
+
+    <!--google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!--google material icon-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-secondary">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Car Sport Administrator</a>
+        
+        <div class="col-8 col-md-3 col-lg-3  order-md-3">
+                <ul class="nav navbar-nav flex-row ml-auto">
+                    <li class="dropdown nav-item">
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="dropdownProfil" data-bs-toggle="dropdown" aria-expanded="false"
+                            th:text="${hUserName}">
+                            Hallo User
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute"
+                            aria-labelledby="dropdownProfil">
+                            <li><button id="logout">
+                                    <i class="material-icons">logout</i>
+                                    Logout
+                                </button></li>
+                        </ul>
+                    </li>
+                </ul>
+        </div>
+
+    </div>
+      </div>
+    </nav>
+
+    <!-- Halaman 1 -->
+    <section class="header-section " id="header">
+        <div class="container mt-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <input type="text" class="form-control me-2" placeholder="Cari" id="inputcari">
+                                <button type="button" class="btn btn-primary" id="btnTambah">Tambah</button>
+                            </div>
+                        </div>
+                        <div class="card-body" id="dataAkses">
+
+                        </div>
+                        <div class="card-footer ">
+                            <div class="row">
+                                <div class="d-flex justify-content-start col-6">
+                                    All Data(Bisa CRUD)
+                                </div>
+                                <div class="d-flex justify-content-end col-6" id="page">
+                                    Paging Halaman
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+       <!-- Modal Tambah Role -->
+       <div class="modal fade" id="modalTambahRole" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">TAMBAH</h5>
+                    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <span>Name</span>
+                    <input type="text" class="form-control mb-4" id="Tname" >
+                    <span>Dob</span>
+                    <input type="date" class="form-control mb-3" id="Tdob" >
+                    <span>noHp</span>
+                    <input type="text" class="form-control mb-3" id="Tnohp" >
+                    <span>email</span>
+                    <input type="text" class="form-control mb-3" id="Temail" >
+                </div>
+                <div class="d-flex justify-content-end mb-3 px-2">
+                    <div class="row ml-4">
+                        <div class="col">
+                            <button type="button" class="btn btn-warning" id="btntambahBatal">Batal</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-info" id="btntambahSimpan">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tutup Modal Tambah Role -->
+
+    <!-- Modal Ubah Role -->
+    <div class="modal fade" id="modalUbah" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">UBAH HAK AKSES</h5>
+                    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <span>Name</span>
+                    <input type="text" class="form-control mb-4" id="Uname" >
+                    <span>Dob</span>
+                    <input type="date" class="form-control mb-3" id="Udob" >
+                    <span>noHp</span>
+                    <input type="text" class="form-control mb-3" id="Unohp" >
+                    <span>email</span>
+                    <input type="text" class="form-control mb-3" id="Uemail" >
+                </div>
+                <div class="d-flex justify-content-end mb-3 px-2">
+                    <div class="row ml-4">
+                        <div class="col">
+                            <button type="button" class="btn btn-warning" id="btnBatalUbah">Batal</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-info" id="btnSimpanUbah">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tutup Modal Ubah Role -->
+
+     <!-- Modal Hapus Role -->
+     <div class="modal fade" id="modalHapus" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">HAPUS !</h5>
+                    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            Anda ingin menghapus <b id="Hapusname"></b> ?
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mb-3 px-2">
+                    <div class="row ml-4">
+                        <div class="col">
+                            <button type="button" class="btn btn-warning" id="btnBatalHapus">Tidak</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-info" id="btnSimpanHapus">Ya</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tutup Modal Hapus Role-->
+
+        <!-- Halaman 2 -->
+        <section class="header-section mt-5 mb-5" id="header">
+            <div class="container mt-3">
+              <div class="row align-items-center justify-content-center">
+                <div class="col-md-6">
+                    <div class="card text-center">
+                        <div class="card-header text-start">
+                         Upload file 
+                        </div>
+                        <h2>Upload Data</h2>
+                        <form id="uploadForm">
+                        <div class="row">
+                            <div class="col mb-3">
+                            <label for="fileInput">Select File:</label>
+                                <div class="ps-5 pe-5">
+                                        <input type="file" class="form-control mb-3 col-4" id="fileInput" name="fileInput" accept=".xlsx, .xls, .csv" required>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end me-3">
+                                    <button type="button" class="btn btn-secondary" onclick="uploadData()">Upload</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                      
+                        <div class="card-footer text-muted">
+                          Upload data excel Or Pdf
+                        </div>
+                      </div>
+                </div>
+            </div>
+          </section>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto bg-secondary">
+      <div class="container">
+        <p>&copy; 2023 By Mirfak Andantito</p>
+      </div>
+    </footer>
+</body>
+<script src="/jquery-3.7.1.js"></script>
+<script type="text/JavaScript" src="/dashboard/dashboard.js"></script>
+<!-- Bootstrap -->
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+crossorigin="anonymous"
+></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+<script>
+  function uploadData() {
+    var fileInput = document.getElementById('fileInput');
+    var file = fileInput.files[0];
+
+    if (file) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        if (file.type === 'application/pdf') {
+          // Handle PDF file
+          var pdfData = new Uint8Array(e.target.result);
+          pdfjsLib.getDocument({ data: pdfData }).promise.then(function (pdf) {
+            // Process PDF data
+            console.log(pdf);
+            alert('PDF data uploaded successfully!');
+          });
+        } else {
+          // Handle other file types (you may add more conditions based on file type)
+          alert('File uploaded successfully!');
+        }
+      };
+
+      reader.readAsArrayBuffer(file);
+    } else {
+      alert('Please select a file.');
+    }
+  }
+</script>
+</html>

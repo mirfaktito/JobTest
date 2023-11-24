@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Admin</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!----css3---->
+    <link rel="stylesheet" href="/dashboard/custom.css" />
+
+    <!--google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!--google material icon-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="d-flex flex-column h-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-secondary">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Car Sport Member</a>
+        
+        <div class="col-8 col-md-3 col-lg-3  order-md-3">
+                <ul class="nav navbar-nav flex-row ml-auto">
+                    <li class="dropdown nav-item">
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="dropdownProfil" data-bs-toggle="dropdown" aria-expanded="false"
+                            th:text="${hUserName}">
+                            Hallo User
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute"
+                            aria-labelledby="dropdownProfil">
+                            <li><button id="logout">
+                                    <i class="material-icons">logout</i>
+                                    Logout
+                                </button></li>
+                        </ul>
+                    </li>
+                </ul>
+        </div>
+
+    </div>
+      </div>
+    </nav>
+
+    <!-- Halaman 1 -->
+    <section class="header-section" >
+        <div class="container mt-5 mb-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                    <h6>Data Member yang login</h6>
+                            </div>
+                        </div>
+                        <div class="card-body" id="datalogin">
+
+                        </div>
+                        <div class="card-footer d-flex justify-content-end">
+                            Data Profile Login
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+    <!-- Halaman 2 -->
+    <section class="header-section">
+        <div class="container mt-5 mb-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                    <h6>Data List Member Berdasarkan Nama</h6>
+                            </div>
+                        </div>
+                        <div class="card-body" id="dataAkses">
+
+                        </div>
+                        <div class="card-footer d-flex justify-content-end" id="page">
+                            Paging Halaman
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto bg-secondary">
+      <div class="container">
+        <p>&copy; 2023 By Mirfak Andantito</p>
+      </div>
+    </footer>
+</body>
+<script src="/jquery-3.7.1.js"></script>
+<!-- Bootstrap -->
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+crossorigin="anonymous"
+></script>
+<script type="text/JavaScript" src="/member/member.js"></script>
+</html>
